@@ -6,7 +6,7 @@ body{
 .nav{
     width: 100%;
     height: 80px;
-    background-color: #1a1919;
+    background-color: #141414;
     display:grid;
     grid-template-columns:30% 30% 13% 13% 13%;
     text-align: center;
@@ -16,6 +16,7 @@ body{
 }
 .nav:hover{
     background-color: black;
+
 
 }
 .nav a{
@@ -44,6 +45,7 @@ body{
     background-size: cover;
     display:grid;
     grid-template-columns:30% 70%;
+    align-items: center;
 
 }
 .container {
@@ -163,4 +165,270 @@ body{
     z-index: -6;
     text-align: center;
   }
+.beneficios_banner{
+    margin: 0 auto;
+    width: 95%;
+    text-align: center;
+}
+.beneficios_banner ol{
+    text-align: left;
+    color: white;
+    font-size: 20px;
+    line-height: 45px;
+}
+.titulo{
+    color: white;
+}
+.landing_carrusel{
+    align-items: center;
+    margin: 0 auto;
+    width: 95%;
+    height: 500px;
+    background-color: #141414;
+    border-radius: 10px;
+
+}
+.ImagenCambiante{
+    width: 100%;
+    height: 95%;
+
+    border-radius: 10px;
+    background-image: url(images/pexels-football-wife-1618200.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;   
+    transition:  background-image .5s;
+    animation-name: wipe-in-right;
+    animation-duration: 1s; 
+}
+.ImagenCambiante_foot_ball{
+    width: 100%;
+    height: 95%;
+    display: none;
+    border-radius: 10px;
+    background-image: url(images/pexels-pixabay-274422.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: wipe-in-right;
+    animation-duration: 1s;    
+}
+.ImagenCambiante_foot_ball p{
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    z-index: 10;
+    font-size: 50px;
+    background-color: #141414;
+    border-radius: 10px;
+    opacity: .8;
+    padding-bottom: 10px;
+
+}
+.ImagenCambiante p{
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    z-index: 10;
+    font-size: 50px;
+    background-color: #141414;
+    border-radius: 10px;
+    opacity: .8;
+    padding-bottom: 10px;
+
+}
+.carrusel_botones{
+    width: 20%;
+    height: 5%;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns:25% 25% 25% 25%;
+}
+.circulo_carrucel{
+
+    margin: 0 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    border: 2px solid red;
+}
+.circulo_carrucel:hover{
+    cursor: pointer;
+}
+
+.ImagenCambiante_Basketball{
+    width: 100%;
+    height: 95%;
+    display: none;
+    border-radius: 10px;
+    background-image: url(images/pexels-pixabay-71103.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;  
+    animation-name: wipe-in-right;
+    animation-duration: 1s; 
+}
+.ImagenCambiante_Basketball p{
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    z-index: 10;
+    font-size: 50px;
+    background-color: #141414;
+    border-radius: 10px;
+    opacity: .8;
+    padding-bottom: 10px;
+ 
+}
+.ImagenCambiante_Casino{
+    width: 100%;
+    height: 95%;
+    display: none;
+    border-radius: 10px;
+    background-image: url(images/pexels-drew-rae-1871508.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;  
+    animation-name: wipe-in-right;
+    animation-duration: 1s;  
+}
+.ImagenCambiante_Casino p{
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    z-index: 10;
+    font-size: 50px;
+    background-color: #141414;
+    border-radius: 10px;
+    opacity: .8;
+    padding-bottom: 10px;
+}
+button{
+    width: 200px;
+    height: 30px;
+    background-color: #F09819;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+.card2 {
+    width: 190px;
+    padding: 1.9rem 1.2rem;
+    text-align: center;
+    background: #2a2b38;
+   }
+   
+   /*Inputs*/
+   .field {
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    background-color: #1f2029;
+    border-radius: 4px;
+    padding: .5em 1em;
+   }
+   
+   .input-icon {
+    height: 1em;
+    width: 1em;
+    fill: #ffeba7;
+   }
+   
+   .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+   }
+   
+   /*Text*/
+   .title {
+    margin-bottom: 1rem;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #f5f5f5;
+   }
+   
+   /*Buttons*/
+   .btn {
+    margin: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: .8em;
+    text-transform: uppercase;
+    padding: 0.6em 1.2em;
+    background-color: #ffeba7;
+    color: #5e6681;
+    box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+    transition: all .3s ease-in-out;
+   }
+   
+   .btn-link {
+    color: #f5f5f5;
+    display: block;
+    font-size: .75em;
+    transition: color .3s ease-out;
+   }
+   
+   /*Hover & focus*/
+   .field input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+   }
+   
+   .btn:hover {
+    background-color: #5e6681;
+    color: #ffeba7;
+    box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+   }
+   
+   .btn-link:hover {
+    color: #ffeba7;
+   }
+
+.login_conten{
+    width:60%;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+    line-height: 100px;
+}
+.imagen_login{
+    width: 80%;
+    background-color: #690f0f;
+    background-image: url(images/pexels-anna-shvets-6664180.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 95%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+@keyframes square-in-hesitate {
+    0% {
+      clip-path: inset(100% 100% 100% 100%);
+    }
+    40% {
+      clip-path: inset(33% 33% 33% 33%);
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+    }
+  }
   
+  [transition-style="in:square:hesitate"] {
+    animation: 2.5s cubic-bezier(.25, 1, .30, 1) square-in-hesitate both;
+  }
+  @keyframes wipe-in-right {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  
+  [transition-style="in:wipe:right"] {
+    animation: 2.5s cubic-bezier(.25, 1, .30, 1) wipe-in-right both;
+  }
