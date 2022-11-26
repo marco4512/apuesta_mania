@@ -16,10 +16,28 @@ body{
     transition: background-color .5s;
 
 }
+.nav2{
+  width: 100%;
+    height: 80px;
+    background-color: #141414;
+    display:grid;
+    grid-template-columns:30% 17.5% 17.5% 17.5% 17.5%;
+    text-align: center;
+    align-items: center;
+    transition: background-color .5s;
+}
+
+.nav2:hover{
+  background-color: black;
+}
 .nav:hover{
     background-color: black;
-
-
+}
+.nav2 a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .nav a{
     color: #fff;
@@ -33,6 +51,12 @@ body{
     text-decoration: none;
     font-size: 22px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.nav2 a:hover{
+  color: red;
+  text-decoration: none;
+  font-size: 22px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .contenido_principal{
     margin: 0 auto;
@@ -50,6 +74,17 @@ body{
     align-items: center;
 
 }
+.dashboard{
+  margin: 0 auto;
+  width: 100%;
+  height: 550px;
+  background-image: url(images/pexels-tembela-bohle-1884574.jpg);
+  background-size: cover;
+  display:grid;
+  grid-template-columns:30% 70%;
+  align-items: center;
+}
+
 .container {
     display: flex;
     align-items:center;
@@ -407,6 +442,187 @@ button{
     margin: 0 auto;
     border-radius: 10px;
 }
+/***************apuestas*/
+.apuestas {
+  width: 285px;
+  height: 381px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+  overflow: visible;
+  margin: 0 auto;
+ }
+
+ .apuestas .item {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+ }
+ 
+ .item:hover {
+  transform: scale(0.95);
+  transition: all 0.3s;
+ }
+ 
+ .item svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 7px;
+ }
+ 
+ .item--1 {
+  background: #2F5936;
+ }
+ 
+ .item--2 {
+  background: #C9D94E;
+ }
+ 
+ .item--3 {
+  background: #fa8d0f;
+ }
+ 
+ .item--4 {
+  background: #e73131;
+ }
+ 
+ .quantity {
+  font-size: 25px;
+  font-weight: 600;
+ }
+ 
+ .text {
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 600;
+ }
+ 
+ .text--1 {
+  color: rgba(149,149,255,1);
+ }
+ 
+ .text--2 {
+  color: rgba(252,161,71,1);
+ }
+ 
+ .text--3 {
+  color: rgba(66,193,110,1);
+ }
+ 
+ .text--4 {
+  color: rgba(220,91,183,1);
+ }
+
+.contenido_apuestas{
+  text-align: center;
+  color: white;
+
+}
+.panel_usuario{
+  margin: 0 auto;
+  width: 95%;
+  height: 95%;
+background-color: #1f2029;
+  border-radius: 10px;
+
+}
+.contenedor_todas_las_apuestas{
+  margin: 0 auto;
+  width: 100%;
+  overflow:scroll;
+  height: 520px;
+  scroll-behavior: smooth;
+  background: rgba( 0, 0, 0, 0.85 );
+  box-shadow: 0 5px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 19px );
+  -webkit-backdrop-filter: blur( 2px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.Titulo_apuesta{
+  margin: 0 auto;
+  width: 100%;
+  color: white;
+  text-align: center;
+  align-items: center;
+
+}
+.contenido_apues_dentro{
+  margin: 0 auto;
+  width: 95%;
+  display: grid;
+  grid-template-columns:repeat(3,31%);
+  gap: 25px;
+  height: 320px;
+}
+.dentro_tarjerta{
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  background: rgba( 0, 0, 0, .5 );
+  border-radius: 1rem;
+ border: #212121 0.2rem solid;
+ transition: all 0.4s ease-in;
+ vertical-align: middle;
+}
+.dentro_tarjerta:hover{
+  transform: translateY(-.4rem);
+ border: #fa0240f0 0.2em solid;
+ border-radius: 2.5rem 0 2.5rem 0;
+}
+.dentro_tarjerta h1{
+  color: white;
+  align-items: center;
+  vertical-align: middle;
+}
+.dentro_tarjerta p{
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+}
+
+.tarjeta_baner{
+ 
+ width: 100%;
+ height: 320px;
+ border-radius: 1rem;
+ border: #212121 0.2rem solid;
+ transition: all 0.4s ease-in;
+ box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+ background-image: url(images/poker-g357f1843d_640.jpg);
+ background-size: cover;
+ background-repeat: no-repeat;
+ margin: 0 auto;
+ text-align: center;
+}
+
+.tarjeta_baner:hover{
+transform: translateY(-1.5rem);
+ border: #fa0240f0 0.2em solid;
+ border-radius: 2.5rem 0 2.5rem 0;
+
+}
+.imagen_casinos{
+  margin: 0 auto;
+  width: 100%;
+  height: 520px;
+  background-image: url(images/las-vegas-g1a05e0389_1920.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 @keyframes square-in-hesitate {
     0% {
       clip-path: inset(100% 100% 100% 100%);
