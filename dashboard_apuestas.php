@@ -15,10 +15,10 @@
 <body>
     <div class="nav2">
         <object data="images/Group 1.svg"></object>
-        <a href="dashboard.php#Casino">Casino</a>
-        <a href="dashboard.php#Fotball">FootBall</a>
-        <a href="dashboard.php#Americano">Americano</a>
-        <a href="dashboard.php#Baloncesto">Baloncesto</a>
+        <a href="dashboard.php#casino">Casino</a>
+        <a href="dashboard.php#football">FootBall</a>
+        <a href="dashboard.php#americano">Americano</a>
+        <a href="dashboard.php#baloncesto">Baloncesto</a>
     </div>
 
     <div class="contenido_principal">
@@ -129,64 +129,108 @@
                 </div>
             </diV>
             <div class="panel_usuario">
-                <div class="contenedor_todas_las_apuestas">
-                    <?php
-                    include('db.php');
-                    $consulta = "SELECT * FROM `categoria_juegos`";
-                    $resultado = mysqli_query($conexion, $consulta);
-                     while($row = mysqli_fetch_array($resultado)){
-                        $imagen_fondo=$row['url_categoria_img'];
-                        $categoria=$row['nombre_categoria'];
-                        echo "<a name='$categoria'></a>
-                            <div class='imagen_casinos'style='background-image: url($imagen_fondo);' >
-                                <div class='Titulo_apuesta'>
-                                    <h1>Apuesta en el $categoria</h1>
-                                    <hr>
-                                </div>
-                            <br>
-                            <div class='contenido_apues_dentro'>";
-                        $consulta2 = "SELECT * FROM `opciones_de_apuesta`
-                         INNER JOIN categoria_juegos on opciones_de_apuesta.id_categoria= categoria_juegos.id_categorias 
-                         where categoria_juegos.nombre_categoria='".$row['nombre_categoria']."'";
+                <div class="contenedor_todas_las_apuestas" >
+                            <?php
+                            session_start();
+                            $id_juego=$_GET['juego'];
+                            $id_categoria=$_GET['cat'];
+                            $id = $_SESSION['id'];
+                            include('db.php');
+                            $consulta = "SELECT * FROM `opciones_de_apuesta`
+                                         INNER JOIN categoria_juegos
+                                         on opciones_de_apuesta.id_categoria=categoria_juegos.id_categorias
+                                         WHERE categoria_juegos.id_categorias= $id_categoria
+                                         AND opciones_de_apuesta.id_opciones=$id_juego";
+                            $resultado = mysqli_query($conexion, $consulta);
+                            $row = $resultado->fetch_array(MYSQLI_ASSOC);
+                            $cate= $row ['nombre_categoria'];
+                            $op = $row ['nombre_opcion'];
+                            $url_imagen= $row['url_categoria_img'];
+                            $url_tarjeta= $row['url_imagen'];
+                            $cant_mini= $row['catidad_minima'];
+                            $id_ca=$row['id_categorias'];
+                            $id_op=$row['id_opciones'];
+                                    echo "
+                                    <div class='imagen_casinos' style='background-image: url($url_imagen);display: grid;grid-template-columns:50%50%;align-items: center;' >
+                                            <div class='Titulo_apuesta'>
+                                            <h1 style='background:rgba(0, 0, 0, 0.781);'>Apuesta en el " . ucfirst($cate) . "</h1>
+                                            <hr>
+                                                <div class='tarjeta_baner' style='background-image:url($url_tarjeta); width:250px;height: 300px;'>
+                                                        <div  class='dentro_tarjerta' >
+                                                            <h1>$op</h1>
+                                                            <p >Apuesta desde</p>
+                                                            <p style='color: red; background-color: rgb(16, 233, 16);'>$$cant_mini MXN</p>
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
 
-                        $solo_op=mysqli_query($conexion, $consulta2);
-                        while($row_op = mysqli_fetch_array($solo_op)){
-                            $id_juego=$row_op['id_opciones'];
-                            $id_cat=$row_op['id_categoria'];
-                            $nombre_juego=$row_op['nombre_opcion'];
-                            $cant_mini=$row_op['catidad_minima'];
-                            $imagen_tarjeta=$row_op['url_imagen'];
-                            echo " <div class='tarjeta_baner' style='background-image: url($imagen_tarjeta);' >
-                            <a href='dashboard_apuestas.php?juego=$id_juego&cat=$id_cat' style='color:white;  text-decoration: none;'>
-                            
-                            <div  class='dentro_tarjerta'>
-                                <h1>$nombre_juego</h1>
-                                <p>Apuesta desde</p>
-                                <p style='color: red; background-color: rgb(16, 233, 16);'>$$cant_mini MXN</p>
-                                <br>
-                                <br>
-                                <div style='text-align: center; align-items: center; margin: 0 auto; border-radius: 10px; vertical-align: middle;
-                                        height: 30px; background-color: rgb(71, 21, 31); width:70%;'>
-                                    <p>vamos</p>
-                                </div>
-                            </div>
-                            </a>
-                            </div>
-                            ";
-                        }
-                     echo"   
-                            
-                           </div>
-                         </div>";
-                    }
-                    mysqli_free_result($resultado);
-                    mysqli_close($conexion);
-                    ?>
+                                            </div>
+                                            <div class='card_2' style='background:rgba(0, 0, 0, 0.781);text-align: center;   height: 100%;   align-items: center;vertical-align: middle;'>
+                                            <h4 class='title'>Apuesta!</h4>
+                                            <form style='width: 90%; margin: 0 auto;' action='nueva_apuesta.php' method='POST'>
+                                                <div class='field'>
+                                                   <svg width='15' height='14' viewBox='0 0 15 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                                        <path d='M7.04687 11.1855H7.90625V10.4272C8.54167 10.3591 9.03646 10.1768 9.39062 9.88029C9.74479 9.58376 9.92188 9.18758 9.92188 8.69175C9.92188 8.19591 9.77083 7.79244 9.46875 7.48133C9.16667 7.17022 8.65625 6.87369 7.9375 6.59175C7.33333 6.35842 6.89583 6.14939 6.625 5.96467C6.35417 5.77994 6.21875 5.53203 6.21875 5.22091C6.21875 4.91953 6.33594 4.68133 6.57031 4.50633C6.80469 4.33133 7.125 4.24383 7.53125 4.24383C7.84375 4.24383 8.11458 4.31189 8.34375 4.448C8.57292 4.58411 8.76562 4.78828 8.92187 5.0605L9.67188 4.72508C9.49479 4.3848 9.26042 4.11744 8.96875 3.923C8.67708 3.72855 8.33333 3.61189 7.9375 3.573V2.82925H7.07812V3.573C6.54687 3.64105 6.1276 3.82335 5.82031 4.11987C5.51302 4.4164 5.35937 4.78341 5.35937 5.22091C5.35937 5.6973 5.51562 6.07647 5.82812 6.35841C6.14062 6.64036 6.60937 6.90286 7.23437 7.14592C7.93229 7.41814 8.41146 7.66362 8.67188 7.88237C8.93229 8.10112 9.0625 8.37091 9.0625 8.69175C9.0625 9.00286 8.92448 9.25321 8.64844 9.44279C8.3724 9.63237 8.02604 9.72716 7.60938 9.72716C7.20313 9.72716 6.84115 9.62022 6.52344 9.40633C6.20573 9.19244 5.98438 8.90078 5.85938 8.53133L5.0625 8.77925C5.28125 9.22647 5.54948 9.5789 5.86719 9.83654C6.1849 10.0942 6.57812 10.2813 7.04687 10.398V11.1855ZM7.5 12.8334C6.64583 12.8334 5.83854 12.6803 5.07812 12.374C4.31771 12.0678 3.65365 11.6497 3.08594 11.1199C2.51823 10.59 2.07031 9.97022 1.74219 9.2605C1.41406 8.55078 1.25 7.7973 1.25 7.00008C1.25 6.19314 1.41406 5.4348 1.74219 4.72508C2.07031 4.01536 2.51823 3.398 3.08594 2.873C3.65365 2.348 4.31771 1.93237 5.07812 1.62612C5.83854 1.31987 6.64583 1.16675 7.5 1.16675C8.36458 1.16675 9.17708 1.31987 9.9375 1.62612C10.6979 1.93237 11.3594 2.348 11.9219 2.873C12.4844 3.398 12.9297 4.01536 13.2578 4.72508C13.5859 5.4348 13.75 6.19314 13.75 7.00008C13.75 7.7973 13.5859 8.55078 13.2578 9.2605C12.9297 9.97022 12.4844 10.59 11.9219 11.1199C11.3594 11.6497 10.6979 12.0678 9.9375 12.374C9.17708 12.6803 8.36458 12.8334 7.5 12.8334ZM7.5 11.9584C8.97917 11.9584 10.2344 11.4747 11.2656 10.5074C12.2969 9.54001 12.8125 8.37092 12.8125 7.00008C12.8125 5.61953 12.2969 4.448 11.2656 3.4855C10.2344 2.523 8.97917 2.04175 7.5 2.04175C6.03125 2.04175 4.77865 2.523 3.74219 3.4855C2.70573 4.448 2.1875 5.61953 2.1875 7.00008C2.1875 8.37092 2.70573 9.54001 3.74219 10.5074C4.77865 11.4747 6.03125 11.9584 7.5 11.9584Z' fill='white'/>
+                                                        </svg>
+
+                                                    <input autocomplete='off' id='cantidad' placeholder='Cantidad' class='input-field' name='cantidad' type='number' min='$cant_mini'>
+                                                  </div>
+                                              <div class='field'>
+                                                <svg class='input-icon' viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'>
+                                                <path d='M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z'></path></svg>
+                                                <input  id='email' placeholder='Email' class='input-field' name='email' type='email'>
+                                              </div>
+                                              <div class='field'>
+                                                <svg class='input-icon' viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'>
+                                                <path d='M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z'></path></svg>
+                                                <input autocomplete='off' id='password' placeholder='Password' class='input-field' name='password' type='password'>
+                                              </div>
+                                              <div class='field'>
+                                                <svg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                                    <path d='M17.958 2.70799V11.292C17.958 12.014 17.7013 12.639 17.188 13.167C16.674 13.6943 16.042 13.958 15.292 13.958H2.70801C1.97201 13.958 1.34367 13.6943 0.823007 13.167C0.302341 12.639 0.0420074 12.014 0.0420074 11.292V2.70799C0.0420074 1.98599 0.302341 1.36099 0.823007 0.832992C1.34367 0.305659 1.97201 0.0419922 2.70801 0.0419922H15.292C16.042 0.0419922 16.674 0.305659 17.188 0.832992C17.7013 1.36099 17.958 1.98599 17.958 2.70799V2.70799ZM2.70801 3.77099H15.292V2.70799H2.70801V3.77099ZM2.70801 7.10399V11.292H15.292V7.10399H2.70801ZM2.70801 11.292V2.70799V11.292V11.292Z' fill='white'/>
+                                                    </svg>                            
+                                                <path d='M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z'></path></svg>
+                                                <input autocomplete='off' id='tarjeta' placeholder='xxxx-xxxx-xxx-xxxx' class='input-field' name='tarjeta' type='text'  required pattern='[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}'  >
+                                              </div>
+                                              <br>
+
+                                              <div style='   width: 100%;
+                                              background-color: #0f0f0f;
+                                              display: grid;
+                                              grid-template-columns:25% 25% 25% 25%;
+                                              border-radius: 10px;
+                                              color:white;
+                                              text-align: left;
+                                              font-size: 20px;
+                                              margin: 0 auto;
+                                              visibility: hidden;
+                                              '>
+                                              <p style='text-align: center;' >Tu apuesta: </p>
+                                              <input style=' text-align: left; font-size: 20px;' readonly class='input-field' name='nombre_juego' type='text' value='$id_op'>
+                                              <p style='text-align: left;'>En</p>
+                                              <input style=' font-size: 20px;' readonly class='input-field' name='nom_cat' type='text' value='$id_ca'>
+                                              </div>
+                                              <button class='btn' type='submit'>Buena Suerte</button>
+                                              <p class='error' id='error_de_autenti'>Error Algo salio mal</p>
+                                              <p class='error' id='apuestacorrecta'>Se realizo tu apuesta</p>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    ";
+                               
+                            mysqli_free_result($resultado);
+                            mysqli_close($conexion);
+                            ?>
+    
                 </div>
             </div>
         </div>
 
         <script src="JavaScript/Carrusel.js"></script>
+  
+
 </body>
 
 </html>
