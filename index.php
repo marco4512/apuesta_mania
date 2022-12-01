@@ -16,8 +16,8 @@
         <object data="images/Group 1.svg"></object>
         <div></div>
         <a href="index.php">Casino</a>
-        <a href="IniciarSecion.php">Iniciar sesión</a>
-        <a href="registro.php">Registrarse</a>
+        <a href="vistas/IniciarSecion.php">Iniciar sesión</a>
+        <a href="vistas/registro.php">Registrarse</a>
     </div>
 
     <div class="contenido_principal">
