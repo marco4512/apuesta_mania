@@ -1,0 +1,5 @@
+/*** aqui el comando de la inyecccion *****/
+
+'or '1'='1
+
+:D
